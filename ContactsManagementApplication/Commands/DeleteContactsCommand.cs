@@ -1,0 +1,15 @@
+﻿using ContactsManagementApplication.Interfaces.Commands;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ContactsManagementApplication.Commands
+{
+    public class DeleteContactsCommand : ICommands<bool>
+    {
+        public int Id { get; set; }
+    }
+}
