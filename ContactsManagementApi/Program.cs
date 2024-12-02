@@ -20,6 +20,16 @@ builder.Services.AddSingleton<ContactsJsonDataStore>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure CORS policy to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 // Register the custom error handling middleware globally
 app.UseMiddleware<ErrorHandlerMiddleware>();
@@ -30,6 +40,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Use the CORS policy globally
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
