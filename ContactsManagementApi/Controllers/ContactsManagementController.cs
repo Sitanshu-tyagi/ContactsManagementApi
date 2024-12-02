@@ -1,7 +1,6 @@
 ﻿using ContactsManagementApplication.Commands;
 using ContactsManagementInfra.JsonDataStore;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsManagementApi.Controllers
@@ -35,9 +34,9 @@ namespace ContactsManagementApi.Controllers
         public IActionResult GetById(int id)
         {
             var dataStore = new ContactsJsonDataStore();
-            var person = dataStore.GetAll().FirstOrDefault(p => p.Id == id);
-            if (person == null) return NotFound();
-            return Ok(person);
+            var contact = dataStore.GetAll().FirstOrDefault(p => p.Id == id);
+            if (contact == null) return NotFound();
+            return Ok(contact);
         }
 
         [HttpPut("{id}")]
