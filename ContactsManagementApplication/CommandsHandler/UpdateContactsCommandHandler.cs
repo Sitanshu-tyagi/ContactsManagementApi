@@ -1,4 +1,5 @@
 ﻿using ContactsManagementApplication.Commands;
+using ContactsManagementApplication.Helper;
 using ContactsManagementApplication.Interfaces.CommandsHandler;
 using ContactsManagementInfra.JsonDataStore;
 using MediatR;
@@ -24,7 +25,8 @@ namespace ContactsManagementApplication.CommandsHandler
             var contactList = _dataStore.GetAll();
             var contacts = contactList.FirstOrDefault(p => p.Id == request.Id);
 
-            if (contacts == null) return Task.FromResult(false);
+            if (contacts == null) throw new CustomNotFoundException("Contact not found with the given ID.");
+            ;
 
             contacts.FirstName = request.FirstName;
             contacts.LastName = request.LastName;
