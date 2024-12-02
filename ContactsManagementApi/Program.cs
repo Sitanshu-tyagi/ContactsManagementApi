@@ -1,4 +1,5 @@
 
+using ContactsManagementApi.Middlewares;
 using ContactsManagementApplication.CommandsHandler;
 using ContactsManagementDomain.ContactsFluentValidator;
 using ContactsManagementInfra.JsonDataStore;
@@ -20,6 +21,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+// Register the custom error handling middleware globally
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
