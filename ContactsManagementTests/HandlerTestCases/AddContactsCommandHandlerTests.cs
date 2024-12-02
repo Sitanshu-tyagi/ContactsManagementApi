@@ -2,7 +2,6 @@
 using ContactsManagementApplication.CommandsHandler;
 using ContactsManagementDomain.Entities;
 using ContactsManagementInfra.JsonDataStore;
-using Moq;
 
 public class AddContactsCommandHandlerTests
 {
